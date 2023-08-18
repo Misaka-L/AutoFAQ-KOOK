@@ -24,11 +24,11 @@ namespace AutoFAQ.Bot.CommandRequires {
                             return PreconditionResult.FromSuccess();
                     }
 
-                    await context.Channel.SendKMarkdownMessageAsync("权限检查不通过, 请确保你有有管理问答权限的角色组");
+                    await context.Channel.SendTextAsync("权限检查不通过, 请确保你有有管理问答权限的角色组");
                     return PreconditionResult.FromError($"权限检查不通过, 请确保你有有管理问答权限的角色组");
                 }
 
-                await context.Channel.SendKMarkdownMessageAsync("没有设置管理员角色组，请使用 `.faq op @要添加权限的角色组`");
+                await context.Channel.SendTextAsync("没有设置管理员角色组，请使用 `.faq op @要添加权限的角色组`");
                 return PreconditionResult.FromError("该服务器未配置管理员角色组");
             }
 

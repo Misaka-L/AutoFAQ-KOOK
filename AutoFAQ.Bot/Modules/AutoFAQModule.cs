@@ -35,7 +35,7 @@ namespace AutoFAQ.Bot.Modules {
                 return config;
             });
 
-            await ReplyKMarkdownAsync($"已成功为 (rol){role.Id}(rol) 角色组添加管理问答权限", true);
+            await ReplyTextAsync($"已成功为 (rol){role.Id}(rol) 角色组添加管理问答权限", true);
         }
 
         [Command("deop")]
@@ -51,7 +51,7 @@ namespace AutoFAQ.Bot.Modules {
                 return config;
             });
 
-            await ReplyKMarkdownAsync($"已成功移除角色组 (rol){role.Id}(rol) 的管理问答权限", true);
+            await ReplyTextAsync($"已成功移除角色组 (rol){role.Id}(rol) 的管理问答权限", true);
         }
 
         [Command("list")]
@@ -67,7 +67,7 @@ namespace AutoFAQ.Bot.Modules {
         [GuildManagerRequire]
         public async Task AddQuestion(string regex, string answer) {
             var question = await _autoFAQService.AddQuestionAsync(regex, answer, Context.Guild.Id);
-            await ReplyKMarkdownAsync($"已添加问题 (id:{question.Id}, regex:{question.Regex}, answer:{question.Answer})", true);
+            await ReplyTextAsync($"已添加问题 (id:{question.Id}, regex:{question.Regex}, answer:{question.Answer})", true);
         }
 
         [Command("remove")]
@@ -76,9 +76,9 @@ namespace AutoFAQ.Bot.Modules {
         public async Task RemoveQuestion(long id) {
             try {
                 await _autoFAQService.RemoveQuestionAsync(id);
-                await ReplyKMarkdownAsync($"已移除问题 {id}", true);
+                await ReplyTextAsync($"已移除问题 {id}", true);
             } catch (ArgumentException) {
-                await ReplyKMarkdownAsync($"不存在问题 {id}", true);
+                await ReplyTextAsync($"不存在问题 {id}", true);
             }
         }
     }
